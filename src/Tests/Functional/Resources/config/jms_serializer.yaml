@@ -1,0 +1,6 @@
+jms_serializer:
+  metadata:
+    directories:
+      PostBundle:
+        namespace_prefix: "Evrinoma\\PostBundle"
+        path: '%kernel.root_dir%/Resources/config/serializer/PostBundle'

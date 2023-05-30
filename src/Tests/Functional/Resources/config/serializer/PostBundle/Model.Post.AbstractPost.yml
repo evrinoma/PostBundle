@@ -1,0 +1,17 @@
+Evrinoma\PostBundle\Model\Post\AbstractPost:
+  exclusion_policy: ALL
+  properties:
+    id:
+      groups: [ API_GET_POST, API_POST_POST, API_PUT_POST, ]
+      expose: true
+    createdAt:
+      type: DateTimeImmutable<'Y-m-d H:i'>
+      groups: [ API_GET_POST, API_POST_POST, API_PUT_POST, ]
+      expose: true
+    updatedAt:
+      type: DateTimeImmutable<'Y-m-d H:i'>
+      groups: [ API_GET_POST, API_POST_POST, API_PUT_POST, ]
+      expose: true
+    title:
+      groups: [ API_GET_POST, API_POST_POST, API_PUT_POST, ]
+      expose: true

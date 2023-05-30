@@ -1,0 +1,5 @@
+services:
+  evrinoma.post.fixtures.post:
+    class: Evrinoma\PostBundle\Fixtures\PostFixtures
+    tags:
+      - { name: doctrine.fixture.orm }

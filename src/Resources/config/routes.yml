@@ -1,0 +1,3 @@
+postapi:
+  resource: "@EvrinomaPostBundle/Resources/config/routing/api.yml"
+  prefix: evrinoma

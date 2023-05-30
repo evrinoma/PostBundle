@@ -1,0 +1,9 @@
+services:
+  evrinoma.post.test.functional.action.post:
+    class: Evrinoma\PostBundle\Tests\Functional\Action\BasePost
+    public: true
+    arguments:
+
+  Evrinoma\PostBundle\Tests\Functional\Action\BasePost:
+    alias: evrinoma.post.test.functional.action.post
+    public: true

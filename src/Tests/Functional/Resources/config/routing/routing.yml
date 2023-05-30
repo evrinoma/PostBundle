@@ -1,0 +1,2 @@
+post:
+    resource: "@EvrinomaPostBundle/Resources/config/routes.yml"

@@ -1,0 +1,97 @@
+services:
+  Evrinoma\PostBundle\Controller\PostApiController:
+    alias: evrinoma.post.api.controller
+    public: true
+
+  evrinoma.post.api.controller:
+    class: Evrinoma\PostBundle\Controller\PostApiController
+    arguments:
+      - '@jms_serializer'
+      - '@request_stack'
+      - '@evrinoma.dto.factory'
+      - '@evrinoma.post.facade'
+    autowire: true
+
+  evrinoma.post.facade:
+    class: Evrinoma\PostBundle\Facade\Post\Facade
+    arguments:
+      - '@evrinoma.post.command.manager'
+      - '@evrinoma.post.query.manager'
+      - '@evrinoma.post.adaptor'
+    autowire: true
+
+  Evrinoma\PostBundle\Facade\Post\FacadeInterface:
+    alias: evrinoma.post.facade
+
+  evrinoma.post.factory:
+    class: Evrinoma\PostBundle\Factory\Post\Factory
+    public: true
+    arguments:
+
+  evrinoma.post.orm.repository:
+    class: Evrinoma\PostBundle\Repository\Orm\Post\PostRepository
+    public: true
+    arguments:
+
+  evrinoma.post.command.manager:
+    class: Evrinoma\PostBundle\Manager\CommandManager
+    arguments:
+      - '@evrinoma.post.validator'
+      - '@evrinoma.post.repository'
+      - '@evrinoma.post.factory'
+      - '@evrinoma.post.command.mediator'
+
+  Evrinoma\PostBundle\Manager\CommandManagerInterface:
+    alias: evrinoma.post.command.manager
+
+  evrinoma.post.query.manager:
+    class: Evrinoma\PostBundle\Manager\QueryManager
+    arguments:
+      - '@evrinoma.post.repository'
+
+  Evrinoma\PostBundle\Manager\QueryManagerInterface:
+    alias: evrinoma.post.query.manager
+    
+  evrinoma.post.validator:
+    class: Evrinoma\PostBundle\Validator\PostValidator
+    public: true
+    arguments:
+
+  Evrinoma\PostBundle\Validator\PostValidator:
+    alias: evrinoma.post.validator
+
+  evrinoma.post.query.orm.mediator:
+    class: Evrinoma\PostBundle\Mediator\Orm\QueryMediator
+    public: true
+    arguments:
+
+  Evrinoma\PostBundle\Mediator\Orm\QueryMediator:
+    alias: evrinoma.post.query.orm.mediator
+
+  evrinoma.post.command.mediator:
+    class: Evrinoma\PostBundle\Mediator\CommandMediator
+    public: true
+    arguments:
+
+  Evrinoma\PostBundle\Mediator\CommandMediator:
+    alias: evrinoma.post.command.mediator
+
+  Evrinoma\PostBundle\Mediator\CommandMediatorInterface:
+    alias: evrinoma.post.command.mediator
+
+  evrinoma.post.pre.validator:
+    class: Evrinoma\PostBundle\PreValidator\DtoPreValidator
+    public: true
+    arguments:
+
+  Evrinoma\PostBundle\PreValidator\DtoPreValidator:
+    alias: evrinoma.post.pre.validator
+
+  Evrinoma\PostBundle\PreValidator\DtoPreValidatorInterface:
+    alias: evrinoma.post.pre.validator
+
+  evrinoma.post.post.form.rest.post:
+    class: Evrinoma\PostBundle\Form\Rest\Post\PostChoiceType
+    arguments:
+      - '@evrinoma.post.query.manager'
+    tags: { - name: form.type }

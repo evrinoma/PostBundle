@@ -1,0 +1,4 @@
+services:
+  evrinoma.post.constraint.property.title:
+    class: Evrinoma\PostBundle\Constraint\Property\Title
+
